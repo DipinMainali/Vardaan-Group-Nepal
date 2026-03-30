@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import Section, { SectionHeader } from "@/components/shared/section";
 import { Card, CardContent } from "@/components/ui/card";
 import { SITE_CONFIG } from "@/lib/constants";
 import ContactForm from "./contact-form";
+
+function ContactFormFallback() {
+  return (
+    <div className="space-y-4">
+      <div className="h-10 animate-pulse rounded-md bg-dark-100" />
+      <div className="h-10 animate-pulse rounded-md bg-dark-100" />
+      <div className="h-10 animate-pulse rounded-md bg-dark-100" />
+      <div className="h-32 animate-pulse rounded-md bg-dark-100" />
+      <div className="h-11 animate-pulse rounded-md bg-primary/20" />
+    </div>
+  );
+}
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -125,7 +138,9 @@ export default function ContactPage() {
 
           <Card className="overflow-hidden border-dark-200">
             <CardContent className="p-8">
-              <ContactForm />
+              <Suspense fallback={<ContactFormFallback />}>
+                <ContactForm />
+              </Suspense>
             </CardContent>
           </Card>
         </div>
