@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+/* All colors are sourced from tailwind.config.ts */
+/* primary: #4263eb (blue), secondary: #fd7e14 (orange) */
+/* accent: #12b886 (green), dark: #212529 (gray) */
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-dark-200;
+  }
+
+  body {
+    @apply bg-white text-dark-900 antialiased;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 py-16 md:px-8 lg:px-16 lg:py-24;
+  }
+  .container-main {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .heading-primary {
+    @apply text-3xl font-bold tracking-tight text-dark-900 sm:text-4xl lg:text-5xl;
+  }
+  .heading-secondary {
+    @apply text-2xl font-semibold tracking-tight text-dark-800 sm:text-3xl;
+  }
+  .text-body {
+    @apply text-base leading-7 text-dark-600;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg bg-secondary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-secondary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-lg border-2 border-primary px-6 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+}

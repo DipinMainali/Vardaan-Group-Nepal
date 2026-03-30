@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Auth Models ────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  password      String
+  role          Role      @default(EDITOR)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+// ─── Lead / Contact Management ──────────────────────────────────────────────
+
+model Lead {
+  id          String      @id @default(cuid())
+  name        String
+  email       String
+  phone       String
+  business    Business
+  subject     String
+  message     String
+  status      LeadStatus  @default(NEW)
+  notes       String?
+  attachment  String?     // file URL
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([business])
+  @@index([status])
+  @@index([createdAt])
+  @@map("leads")
+}
+
+enum Business {
+  travels
+  furnishings
+  hotels
+  builders
+  general
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  IN_PROGRESS
+  CONVERTED
+  CLOSED
+}
+
+// ─── CMS Content ────────────────────────────────────────────────────────────
+
+model Content {
+  id        String   @id @default(cuid())
+  key       String   @unique   // e.g., "homepage-hero", "about-mission"
+  title     String?
+  body      String?
+  image     String?
+  metadata  Json?    // flexible key-value store
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contents")
+}
+
+// ─── Team Members ───────────────────────────────────────────────────────────
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  bio       String?
+  image     String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("team_members")
+}
+
+// ─── News / Blog ────────────────────────────────────────────────────────────
+
+model NewsPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String?
+  content     String
+  image       String?
+  published   Boolean  @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([published, publishedAt])
+  @@map("news_posts")
+}
