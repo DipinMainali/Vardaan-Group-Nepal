@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/furnishings/interior-solutions.jfif",
+        url: "/furnishings/interior-solutions.jpeg",
         alt: "Vardaan Furnishings interior solutions",
       },
     ],
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "Vardaan Furnishings",
     description:
       "Explore premium furnishing collections and custom interior solutions.",
-    images: ["/furnishings/interior-solutions.jfif"],
+    images: ["/furnishings/interior-solutions.jpeg"],
   },
 };
 
@@ -64,7 +64,7 @@ const categories = [
     title: "Beds",
     description:
       "Stylish bed collections combining comfort, quality, and durability.",
-    image: "/furnishings/beds.jfif",
+    image: "/furnishings/beds.jpeg",
     icon: Sparkles,
   },
   {
