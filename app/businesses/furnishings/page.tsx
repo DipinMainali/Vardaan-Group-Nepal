@@ -71,14 +71,14 @@ const categories = [
     title: "Office Furniture",
     description:
       "Functional, ergonomic office solutions for modern workspaces.",
-    image: "/furnishings/office-furnitures.jfif",
+    image: "/furnishings/office-furnitures.jpeg",
     icon: Building2,
   },
   {
     title: "Interior Solutions",
     description:
       "End-to-end interiors with custom planning and cohesive execution.",
-    image: "/furnishings/interior-solutions.jfif",
+    image: "/furnishings/interior-solutions.jpeg",
     icon: Palette,
   },
 ] as const;
@@ -299,7 +299,9 @@ export default function FurnishingsPage() {
     <div className="bg-white">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(furnishingsBusinessSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(furnishingsBusinessSchema),
+        }}
       />
 
       <section className="relative isolate overflow-hidden">
