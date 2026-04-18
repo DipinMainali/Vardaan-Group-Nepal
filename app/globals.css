@@ -39,15 +39,33 @@
     @apply text-base leading-7 text-dark-600;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+    @apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg bg-secondary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-secondary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary;
+    @apply inline-flex items-center justify-center rounded-lg bg-secondary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-secondary-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary;
   }
   .btn-outline {
     @apply inline-flex items-center justify-center rounded-lg border-2 border-primary px-6 py-3 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white;
   }
   .card-hover {
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+}
+
+@keyframes heroFade {
+  0% {
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  28% {
+    opacity: 1;
+  }
+  38% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }

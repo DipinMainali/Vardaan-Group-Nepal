@@ -91,9 +91,6 @@ export default function InvestorRelationsContact() {
                   <p className="mt-2 text-sm text-dark-600">
                     {path.description}
                   </p>
-                  <Button asChild variant="outline" size="sm" className="mt-4">
-                    <Link href={path.href}>Connect now</Link>
-                  </Button>
                 </Card>
               </motion.div>
             ))}
@@ -150,8 +147,10 @@ export default function InvestorRelationsContact() {
             <div className="h-64 border-t border-dark-200">
               <iframe
                 title="Vardaan Group office map"
-                src="https://www.google.com/maps?q=Khusibu,+Kathmandu,+Nepal&output=embed"
+                src={SITE_CONFIG.mapEmbedUrl}
                 className="h-full w-full"
+                style={{ border: 0 }}
+                allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

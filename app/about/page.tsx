@@ -7,10 +7,30 @@ import StatsCounter from "@/components/sections/about/stats-counter";
 import CTASection from "@/components/sections/shared/cta-section";
 import { cn } from "@/lib/utils";
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about Vardaan Group's journey, mission, values, and the team behind 25+ years of excellence.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Vardaan Group",
+    description:
+      "Learn about Vardaan Group's mission, values, and 25+ year journey across travel and furnishings.",
+    url: "/about",
+    type: "article",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80",
+        width: 1920,
+        height: 1080,
+        alt: "About Vardaan Group",
+      },
+    ],
+  },
 };
 
 const values = [
@@ -211,37 +231,6 @@ export default function AboutPage() {
               <p className="mt-2 text-sm leading-6 text-dark-600">
                 {item.description}
               </p>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* Team Section */}
-      <Section variant="gray" id="team">
-        <SectionHeader
-          title="Leadership Team"
-          subtitle="Meet the people driving Vardaan Group's vision forward."
-        />
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {leadership.map((member) => (
-            <Card
-              key={member.name}
-              className="overflow-hidden card-hover text-center"
-            >
-              <div className="flex h-48 items-center justify-center bg-linear-to-br from-primary-100 to-primary-200">
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white text-3xl font-bold text-primary shadow-lg">
-                  {member.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-              </div>
-              <CardContent className="p-5">
-                <h3 className="text-lg font-semibold text-dark-900">
-                  {member.name}
-                </h3>
-                <p className="text-sm text-dark-500">{member.role}</p>
-              </CardContent>
             </Card>
           ))}
         </div>

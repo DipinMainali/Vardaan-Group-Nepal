@@ -7,8 +7,10 @@ export const SITE_CONFIG = {
     "Vardaan Group is a diversified group currently focused on curated travel and premium furnishings services.",
   url: "https://vardaangroup.com",
   email: "info@vardaangroup.com",
-  phone: "+91 98765 43210",
+  phone: "+977 970-5435636",
   address: "Khusibu, Kathmandu, Nepal",
+  mapEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d220.74942041589335!2d85.30599113875148!3d27.71757259427621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1776512927653!5m2!1sen!2snp",
 } as const;
 
 export const NAV_LINKS = [

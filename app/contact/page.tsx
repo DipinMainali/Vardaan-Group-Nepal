@@ -7,6 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { SITE_CONFIG } from "@/lib/constants";
 import ContactForm from "./contact-form";
 
+export const revalidate = 3600;
+
 function ContactFormFallback() {
   return (
     <div className="space-y-4">
@@ -23,6 +25,16 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Get in touch with Vardaan Group. Send us your queries about travels, furnishings, or a general inquiry.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact Vardaan Group",
+    description:
+      "Reach Vardaan Group for travel, furnishings, or general business inquiries.",
+    url: "/contact",
+    type: "website",
+  },
 };
 
 const contactInfo = [
@@ -151,8 +163,10 @@ export default function ContactPage() {
         <div className="h-full w-full">
           <iframe
             title="Vardaan Group offices map"
-            src="https://www.google.com/maps?q=Khusibu,+Kathmandu,+Nepal&output=embed"
+            src={SITE_CONFIG.mapEmbedUrl}
             className="h-full w-full"
+            style={{ border: 0 }}
+            allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />

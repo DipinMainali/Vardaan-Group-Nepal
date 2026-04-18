@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Phone,
   Mail,
@@ -19,9 +20,16 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold text-lg">
-                V
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white p-1.5 shadow-sm">
+                <Image
+                  src="/logo.png"
+                  alt="Vardaan Group Logo"
+                  width={56}
+                  height={56}
+                  className="h-auto w-full object-contain"
+                  style={{ height: "auto" }}
+                />
               </div>
               <div>
                 <span className="text-lg font-bold text-white">Vardaan</span>

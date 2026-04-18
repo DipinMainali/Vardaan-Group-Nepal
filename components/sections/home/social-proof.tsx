@@ -353,6 +353,7 @@ export default function SocialProof() {
                     width={120}
                     height={34}
                     className="h-auto w-20 sm:w-24"
+                    style={{ height: "auto", width: "auto" }}
                   />
                 </div>
               </motion.div>

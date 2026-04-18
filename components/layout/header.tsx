@@ -59,7 +59,7 @@ export default function Header() {
         className={cn(
           "sticky top-0 z-50 w-full transition-all duration-300",
           isScrolled
-            ? "border-b border-dark-200 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80"
+            ? "border-b border-dark-200 bg-white/95 shadow-sm backdrop-blur supports-backdrop-filter:bg-white/80"
             : "bg-white",
         )}
       >
@@ -73,6 +73,7 @@ export default function Header() {
                 width={140}
                 height={40}
                 className="block h-8 w-auto lg:h-10"
+                style={{ width: "auto" }}
                 priority
               />
             </Link>

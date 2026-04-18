@@ -42,22 +42,12 @@ export default function ContactForm() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit");
-      }
-
-      setIsSubmitted(true);
-      reset();
-    } catch (error) {
-      alert("Something went wrong. Please try again or contact us directly.");
-    }
+    // Frontend-only mode: no backend API submission.
+    // Keep UX realistic with a short async delay.
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    console.info("Contact form submission (frontend-only):", data);
+    setIsSubmitted(true);
+    reset();
   };
 
   if (isSubmitted) {

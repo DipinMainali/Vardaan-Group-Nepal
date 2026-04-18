@@ -1,13 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import Image from "next/image";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Compass, Flag, Gem } from "lucide-react";
 import Section from "@/components/shared/section";
 
@@ -36,140 +29,189 @@ const corePillars = [
 ];
 
 export default function OurFoundation() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const textY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    prefersReducedMotion ? [0, 0] : [28, -28],
-  );
-  const visualY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    prefersReducedMotion ? [0, 0] : [-22, 22],
-  );
+  const morphTransition = {
+    duration: 14,
+    ease: "easeInOut" as const,
+    repeat: Infinity,
+    repeatType: "mirror" as const,
+  };
 
   return (
     <Section
       variant="dark"
-      className="relative overflow-hidden bg-linear-to-br from-dark-900 via-primary-900 to-dark-900"
+      className="relative overflow-hidden bg-linear-to-br from-[#091722] via-[#0d2235] to-[#0f1b2e]"
       id="our-foundation"
     >
-      <div
-        ref={sectionRef}
-        className="absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(255,255,255,0.14),transparent_38%),radial-gradient(circle_at_10%_90%,rgba(18,184,134,0.18),transparent_40%)]"
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(119,224,255,0.16),transparent_35%),radial-gradient(circle_at_80%_85%,rgba(56,189,248,0.14),transparent_36%)]" />
+
+      <motion.div
+        aria-hidden
+        className="absolute -left-24 top-12 h-72 w-72 rounded-[44%_56%_52%_48%/42%_38%_62%_58%] bg-linear-to-br from-cyan-300/30 to-blue-400/10 blur-2xl"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                borderRadius: [
+                  "44% 56% 52% 48% / 42% 38% 62% 58%",
+                  "58% 42% 60% 40% / 46% 60% 40% 54%",
+                  "44% 56% 52% 48% / 42% 38% 62% 58%",
+                ],
+                x: [0, 28, -10, 0],
+                y: [0, -24, 10, 0],
+                scale: [1, 1.07, 0.96, 1],
+              }
+        }
+        transition={morphTransition}
       />
 
-      <div className="relative grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-        <motion.div style={{ y: textY }} className="space-y-7 lg:col-span-7">
-          <div className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
+      <motion.div
+        aria-hidden
+        className="absolute -bottom-14 right-0 h-80 w-80 rounded-[52%_48%_38%_62%/49%_52%_48%_51%] bg-linear-to-tl from-emerald-300/25 to-cyan-300/10 blur-2xl"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                borderRadius: [
+                  "52% 48% 38% 62% / 49% 52% 48% 51%",
+                  "37% 63% 55% 45% / 55% 42% 58% 45%",
+                  "52% 48% 38% 62% / 49% 52% 48% 51%",
+                ],
+                x: [0, -34, 8, 0],
+                y: [0, 22, -10, 0],
+                scale: [1, 0.94, 1.05, 1],
+              }
+        }
+        transition={{ ...morphTransition, duration: 16 }}
+      />
+
+      <div className="relative grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
+        <motion.div
+          className="space-y-8 lg:col-span-7"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90 backdrop-blur-md">
             Our Foundation
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
-              A Legacy of
-              <span className="block bg-linear-to-r from-accent-200 via-white to-secondary-200 bg-clip-text text-transparent">
-                Purposeful Growth
-              </span>
+          <div className="space-y-5">
+            <h2 className="text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-[3.35rem]">
+              Built To Endure.
+              <motion.span
+                className="block bg-linear-to-r from-cyan-200 via-white to-emerald-200 bg-clip-text text-transparent"
+                animate={
+                  prefersReducedMotion
+                    ? undefined
+                    : { backgroundPositionX: ["0%", "100%", "0%"] }
+                }
+                transition={{
+                  duration: 6,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                }}
+                style={{ backgroundSize: "200% auto" }}
+              >
+                Designed To Evolve.
+              </motion.span>
             </h2>
-            <p className="max-w-2xl text-base leading-7 text-white/80 sm:text-lg">
-              We are a purpose-driven group built on trust, execution, and
-              thoughtful expansion. Our story started with solving real customer
-              challenges—and today our core philosophy still guides every
-              decision, partnership, and new vertical we pursue.
+
+            <p className="max-w-2xl text-base leading-7 text-slate-100/85 sm:text-lg">
+              Vardaan Group is shaped by disciplined execution, trusted
+              relationships, and intentional expansion. Every milestone reflects
+              one principle: create meaningful value that improves daily life,
+              not just quarterly numbers.
             </p>
           </div>
 
-          <div className="relative space-y-4 pl-6 before:absolute before:bottom-1 before:left-2 before:top-1 before:w-px before:bg-white/25">
-            {corePillars.map((pillar, index) => (
-              <motion.article
-                key={pillar.title}
-                initial={{ opacity: 0, x: -18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.45, delay: index * 0.1 }}
-                className="relative rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm transition-all duration-300 hover:border-accent-300/40 hover:bg-white/15"
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { value: "25+", label: "Years of trust" },
+              { value: "2", label: "Core verticals" },
+              { value: "100%", label: "Purpose-led growth" },
+            ].map((item, index) => (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                whileHover={
+                  prefersReducedMotion ? undefined : { y: -3, scale: 1.01 }
+                }
+                className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md"
               >
-                <span className="absolute -left-[1.16rem] top-6 h-3 w-3 rounded-full border border-white/40 bg-accent-300 shadow-[0_0_0_5px_rgba(255,255,255,0.09)]" />
-
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 rounded-lg bg-white/15 p-2 text-white">
-                    <pillar.icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-accent-200">
-                      {pillar.year}
-                    </p>
-                    <h3 className="mt-1 text-lg font-semibold text-white">
-                      {pillar.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-white/80">
-                      {pillar.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.article>
+                <p className="text-2xl font-bold text-white">{item.value}</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.14em] text-cyan-100/80">
+                  {item.label}
+                </p>
+              </motion.div>
             ))}
           </div>
         </motion.div>
 
-        <motion.div style={{ y: visualY }} className="lg:col-span-5">
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.55 }}
-            className="relative h-96 overflow-hidden rounded-3xl border border-white/15 shadow-2xl"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80"
-              alt="Vardaan leadership and founding team"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 40vw"
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-dark-900/80 via-dark-900/35 to-transparent" />
+        <motion.div
+          className="relative lg:col-span-5"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.55, delay: 0.08 }}
+        >
+          <div className="rounded-[1.8rem] border border-white/20 bg-white/[0.07] p-5 shadow-[0_20px_80px_rgba(7,19,35,0.45)] backdrop-blur-xl sm:p-6">
+            <div className="mb-5 flex items-center justify-between">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-100/85">
+                Foundation Timeline
+              </h3>
+              <div className="flex gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-cyan-200/70" />
+                <span className="h-2 w-2 rounded-full bg-emerald-200/60" />
+                <span className="h-2 w-2 rounded-full bg-white/55" />
+              </div>
+            </div>
 
-            <motion.div
-              animate={prefersReducedMotion ? undefined : { y: [0, -6, 0] }}
-              transition={
-                prefersReducedMotion
-                  ? undefined
-                  : { duration: 5, repeat: Infinity, ease: "easeInOut" }
-              }
-              className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/20 bg-white/15 p-4 backdrop-blur-md"
-            >
-              <p className="text-xs font-semibold uppercase tracking-wider text-accent-200">
-                Leadership Photo
-              </p>
-              <p className="mt-1 text-sm leading-6 text-white/85">
-                Every chapter of our growth has been anchored in ownership,
-                quality, and service-led leadership.
-              </p>
-            </motion.div>
-          </motion.div>
+            <div className="relative space-y-3.5 pl-5 before:absolute before:bottom-2 before:left-1.5 before:top-2 before:w-px before:bg-white/25">
+              {corePillars.map((pillar, index) => (
+                <motion.article
+                  key={pillar.title}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.45, delay: index * 0.1 }}
+                  whileHover={
+                    prefersReducedMotion
+                      ? undefined
+                      : {
+                          y: -3,
+                          boxShadow: "0 12px 30px rgba(6, 20, 36, 0.35)",
+                        }
+                  }
+                  className="relative rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md"
+                >
+                  <span className="absolute -left-[1.03rem] top-6 h-2.5 w-2.5 rounded-full border border-cyan-100/70 bg-cyan-300/90 shadow-[0_0_0_5px_rgba(147,197,253,0.18)]" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="mt-4 rounded-2xl border border-accent-300/40 bg-accent-300/10 p-4"
-          >
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent-200">
-              Group Principle
-            </p>
-            <p className="mt-2 text-sm leading-6 text-white/85">
-              Build trust first. Scale second. Keep quality non-negotiable.
-            </p>
-          </motion.div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 rounded-xl border border-white/15 bg-white/10 p-2 text-cyan-50">
+                      <pillar.icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cyan-100/85">
+                        {pillar.year}
+                      </p>
+                      <h4 className="mt-1 text-base font-semibold text-white">
+                        {pillar.title}
+                      </h4>
+                      <p className="mt-1.5 text-sm leading-6 text-slate-100/80">
+                        {pillar.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
     </Section>

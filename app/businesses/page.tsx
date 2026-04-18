@@ -8,10 +8,30 @@ import { Button } from "@/components/ui/button";
 import { BUSINESS_VERTICALS } from "@/lib/constants";
 import CTASection from "@/components/sections/shared/cta-section";
 
+export const revalidate = 21600;
+
 export const metadata: Metadata = {
   title: "Our Businesses",
   description:
     "Explore Vardaan Group's active businesses — Travels & Holidays and Furnishings.",
+  alternates: {
+    canonical: "/businesses",
+  },
+  openGraph: {
+    title: "Vardaan Group Businesses",
+    description:
+      "Explore Vardaan Group's active businesses — Travels & Holidays and Furnishings.",
+    url: "/businesses",
+    type: "website",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80",
+        width: 1920,
+        height: 1080,
+        alt: "Vardaan Group Businesses",
+      },
+    ],
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {
